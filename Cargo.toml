@@ -1,0 +1,22 @@
+[package]
+name = "oax"
+version = "0.1.0"
+authors = ["frofor <18nraywczifc@protonmail.com>"]
+edition = "2024"
+description = "A commmand-line OpenAPI execution client"
+repository = "https://codeberg.org/frofor/oax"
+license = "MIT"
+keywords = ["openapi", "swagger", "cli"]
+categories = ["command-line-utilities", "network-programming"]
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+
+[dependencies]
+clap = "4.5.49"
+clap_complete = { version = "4.5.59", features = ["unstable-dynamic"] }
+reqwest = { version = "0.12.24", features = ["blocking"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.145"
