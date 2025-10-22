@@ -1,12 +1,12 @@
 use crate::spec::Spec;
-use reqwest::blocking::Response;
+use reqwest::Response;
 use serde_json::from_slice;
 
-pub fn fetch_spec_blocking(url: &str) -> reqwest::Result<Spec> {
-	let res = reqwest::blocking::get(url)?;
-	Ok(from_slice(&res.bytes()?).unwrap())
+pub async fn spec(url: &str) -> reqwest::Result<Spec> {
+	let res = reqwest::get(url).await?;
+	Ok(from_slice(&res.bytes().await?).unwrap())
 }
 
-pub fn get_blocking(api_url: &str, path: &str) -> reqwest::Result<Response> {
-	reqwest::blocking::get(format!("{api_url}{path}"))
+pub async fn get(url: &str) -> reqwest::Result<Response> {
+	reqwest::get(url).await
 }
